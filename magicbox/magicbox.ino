@@ -1,13 +1,16 @@
-#include <Servo.h>
+#include <VarSpeedServo.h>
 
-Servo servo1;
-Servo servo2;
-Servo servo3;
-Servo servo4;
-Servo servo5;
+VarSpeedServo servo1;
+VarSpeedServo servo2;
+VarSpeedServo servo3;
+VarSpeedServo servo4;
+VarSpeedServo servo5;
 
+int angle1 = 0;
+int angle2 = 90;
+int rollspeed = 20;
 int SwitchPin = 8;
-int waittime = 1000;
+int waittime = 5000;
 int val;
 
 void setup() {
@@ -21,29 +24,32 @@ void setup() {
 void loop() {
   val = digitalRead(SwitchPin);
   
+  
+  servo1.write(angle1);
+  servo2.write(angle1);
+  servo3.write(angle1);
+  servo4.write(angle1);
+  servo5.write(angle1);
+
+
+  
   if(val == LOW)
   {
-    servo1.write(0);
-    servo2.write(0);
-    servo3.write(0);
-    servo4.write(0);
-    servo5.write(0);
+    delay(5000);
+    
+    servo1.write(angle2, rollspeed, false);
+    servo2.write(angle2, rollspeed, false);
+    servo3.write(angle2, rollspeed, false);
+    servo4.write(angle2, rollspeed, false);
+    servo5.write(angle2, rollspeed, true);
     
     delay(waittime);
     
-    servo1.write(90);
-    servo2.write(90);
-    servo3.write(90);
-    servo4.write(90);
-    servo5.write(90);
-    
-    delay(waittime);
-    
-    servo1.write(180);
-    servo2.write(180);
-    servo3.write(180);
-    servo4.write(180);
-    servo5.write(180);
+    servo1.write(angle1, rollspeed);
+    servo2.write(angle1, rollspeed);
+    servo3.write(angle1, rollspeed);
+    servo4.write(angle1, rollspeed);
+    servo5.write(angle1, rollspeed, true);
     
     delay(waittime);
   }
